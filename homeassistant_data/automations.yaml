@@ -1,0 +1,400 @@
+- id: '1789945469749'
+  alias: 'Banheiro: Controle do Exaustor pelo Chuveiro'
+  description: Liga o exaustor ao detectar consumo e desliga 5 minutos após o banho.
+  triggers:
+  - entity_id: sensor.chuveiro_power
+    above: 100
+    id: ligar_exaustor
+    trigger: numeric_state
+  - entity_id: sensor.chuveiro_power
+    below: 50
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    id: desligar_exaustor
+    trigger: numeric_state
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: ligar_exaustor
+      sequence:
+      - action: switch.turn_on
+        target:
+          entity_id: switch.interruptor_do_banheiro_l2
+    - conditions:
+      - condition: trigger
+        id: desligar_exaustor
+      sequence:
+      - action: switch.turn_off
+        target:
+          entity_id: switch.interruptor_do_banheiro_l2
+  mode: restart
+- id: '1789949824252'
+  alias: 'Luz do Banheiro: Paralelo Virtual'
+  description: Sincroniza o estado de dois interruptores com redundância de pacotes.
+  triggers:
+  - entity_id:
+    - switch.interruptor_do_banheiro_l1
+    - switch.interruptor_central_l6
+    to: 'on'
+    id: ligar
+    trigger: state
+  - entity_id:
+    - switch.interruptor_do_banheiro_l1
+    - switch.interruptor_central_l6
+    to: 'off'
+    id: desligar
+    trigger: state
+  conditions:
+  - condition: template
+    value_template: '{{ states(''switch.interruptor_do_banheiro_l1'') != states(''switch.interruptor_central_l6'')
+      }}
+
+      '
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: ligar
+      sequence:
+      - repeat:
+          sequence:
+          - action: switch.turn_on
+            target:
+              entity_id:
+              - switch.interruptor_do_banheiro_l1
+              - switch.interruptor_central_l6
+          - delay:
+              seconds: 2
+          until:
+          - condition: template
+            value_template: '{{ states(''switch.interruptor_do_banheiro_l1'') == ''on''
+              and states(''switch.interruptor_central_l6'') == ''on'' or repeat.index
+              >= 3 }}
+
+              '
+    - conditions:
+      - condition: trigger
+        id: desligar
+      sequence:
+      - repeat:
+          sequence:
+          - action: switch.turn_off
+            target:
+              entity_id:
+              - switch.interruptor_do_banheiro_l1
+              - switch.interruptor_central_l6
+          - delay:
+              seconds: 2
+          until:
+          - condition: template
+            value_template: '{{ states(''switch.interruptor_do_banheiro_l1'') == ''off''
+              and states(''switch.interruptor_central_l6'') == ''off'' or repeat.index
+              >= 3 }}
+
+              '
+  mode: restart
+- id: '1789953427189'
+  alias: 'Luz da Entrada: Paralelo Virtual'
+  description: Sincroniza o estado de dois interruptores com redundância de pacotes.
+  triggers:
+  - entity_id:
+    - switch.interruptor_da_entrada_l1
+    - switch.interruptor_central_l5
+    to: 'on'
+    id: ligar
+    trigger: state
+  - entity_id:
+    - switch.interruptor_da_entrada_l1
+    - switch.interruptor_central_l5
+    to: 'off'
+    id: desligar
+    trigger: state
+  conditions:
+  - condition: template
+    value_template: '{{ states(''switch.interruptor_da_entrada_l1'') != states(''switch.interruptor_central_l5'')
+      }}
+
+      '
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: ligar
+      sequence:
+      - repeat:
+          sequence:
+          - action: switch.turn_on
+            target:
+              entity_id:
+              - switch.interruptor_da_entrada_l1
+              - switch.interruptor_central_l5
+          - delay:
+              seconds: 2
+          until:
+          - condition: template
+            value_template: '{{ states(''switch.interruptor_da_entrada_l1'') == ''on''
+              and states(''switch.interruptor_central_l5'') == ''on'' or repeat.index
+              >= 3 }}
+
+              '
+    - conditions:
+      - condition: trigger
+        id: desligar
+      sequence:
+      - repeat:
+          sequence:
+          - action: switch.turn_off
+            target:
+              entity_id:
+              - switch.interruptor_da_entrada_l1
+              - switch.interruptor_central_l5
+          - delay:
+              seconds: 2
+          until:
+          - condition: template
+            value_template: '{{ states(''switch.interruptor_da_entrada_l1'') == ''off''
+              and states(''switch.interruptor_central_l5'') == ''off'' or repeat.index
+              >= 3 }}
+
+              '
+  mode: restart
+- id: '1790027248791'
+  alias: 'Luz da Bancada: Paralelo Virtual'
+  description: Sincroniza o estado de dois interruptores com redundância de pacotes.
+  triggers:
+  - entity_id:
+    - switch.interruptor_da_cozinha_l1
+    - switch.interruptor_central_l4
+    to: 'on'
+    id: ligar
+    trigger: state
+  - entity_id:
+    - switch.interruptor_da_cozinha_l1
+    - switch.interruptor_central_l4
+    to: 'off'
+    id: desligar
+    trigger: state
+  conditions:
+  - condition: template
+    value_template: '{{ states(''switch.interruptor_da_cozinha_l1'') != states(''switch.interruptor_central_l4'')
+      }}
+
+      '
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: ligar
+      sequence:
+      - repeat:
+          sequence:
+          - action: switch.turn_on
+            target:
+              entity_id:
+              - switch.interruptor_da_cozinha_l1
+              - switch.interruptor_central_l4
+          - delay:
+              seconds: 2
+          until:
+          - condition: template
+            value_template: '{{ states(''switch.interruptor_da_cozinha_l1'') == ''on''
+              and states(''switch.interruptor_central_l4'') == ''on'' or repeat.index
+              >= 3 }}
+
+              '
+    - conditions:
+      - condition: trigger
+        id: desligar
+      sequence:
+      - repeat:
+          sequence:
+          - action: switch.turn_off
+            target:
+              entity_id:
+              - switch.interruptor_da_cozinha_l1
+              - switch.interruptor_central_l4
+          - delay:
+              seconds: 2
+          until:
+          - condition: template
+            value_template: '{{ states(''switch.interruptor_da_cozinha_l1'') == ''off''
+              and states(''switch.interruptor_central_l4'') == ''off'' or repeat.index
+              >= 3 }}
+
+              '
+  mode: restart
+- id: '1790028781032'
+  alias: 'Luz da Cozinha: Intermediário Virtual'
+  description: Sincroniza 3 interruptores com alvo inteligente e sem bloqueios.
+  triggers:
+  - entity_id:
+    - switch.interruptor_central_l1
+    - switch.interruptor_da_cozinha_l2
+    - switch.interruptor_da_entrada_l2
+    from: 'off'
+    to: 'on'
+    trigger: state
+  - entity_id:
+    - switch.interruptor_central_l1
+    - switch.interruptor_da_cozinha_l2
+    - switch.interruptor_da_entrada_l2
+    from: 'on'
+    to: 'off'
+    trigger: state
+  conditions:
+  - condition: template
+    value_template: '{% set s1 = states(''switch.interruptor_central_l1'') %} {% set
+      s2 = states(''switch.interruptor_da_cozinha_l2'') %} {% set s3 = states(''switch.interruptor_da_entrada_l2'')
+      %} {{ not (s1 == s2 == s3) }}
+
+      '
+  actions:
+  - repeat:
+      sequence:
+      - variables:
+          alvo_estado: '{{ trigger.to_state.state }}'
+          entidades:
+          - switch.interruptor_central_l1
+          - switch.interruptor_da_cozinha_l2
+          - switch.interruptor_da_entrada_l2
+          alvos_desatualizados: '{{ expand(entidades) | selectattr(''state'', ''!='',
+            alvo_estado) | map(attribute=''entity_id'') | list }}
+
+            '
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ alvos_desatualizados | length > 0 }}'
+          sequence:
+          - action: switch.turn_{{ alvo_estado }}
+            target:
+              entity_id: '{{ alvos_desatualizados }}'
+      - delay:
+          seconds: 2
+      until:
+      - condition: template
+        value_template: '{% set alvo_estado = trigger.to_state.state %} {% set entidades
+          = [''switch.interruptor_central_l1'', ''switch.interruptor_da_cozinha_l2'',
+          ''switch.interruptor_da_entrada_l2''] %} {{ expand(entidades) | selectattr(''state'',
+          ''!='', alvo_estado) | list | length == 0 or repeat.index >= 3 }}
+
+          '
+  mode: restart
+- id: '1790031274124'
+  alias: 'Luz da Sala: Intermediário Virtual'
+  description: Sincroniza 3 interruptores com alvo inteligente e sem bloqueios.
+  triggers:
+  - entity_id:
+    - switch.interruptor_central_l2
+    - switch.interruptor_da_cozinha_l3
+    - switch.interruptor_da_entrada_l3
+    from: 'off'
+    to: 'on'
+    trigger: state
+  - entity_id:
+    - switch.interruptor_central_l2
+    - switch.interruptor_da_cozinha_l3
+    - switch.interruptor_da_entrada_l3
+    from: 'on'
+    to: 'off'
+    trigger: state
+  conditions:
+  - condition: template
+    value_template: '{% set s1 = states(''switch.interruptor_central_l2'') %} {% set
+      s2 = states(''switch.interruptor_da_cozinha_l3'') %} {% set s3 = states(''switch.interruptor_da_entrada_l3'')
+      %} {{ not (s1 == s2 == s3) }}
+
+      '
+  actions:
+  - repeat:
+      sequence:
+      - variables:
+          alvo_estado: '{{ trigger.to_state.state }}'
+          entidades:
+          - switch.interruptor_central_l2
+          - switch.interruptor_da_cozinha_l3
+          - switch.interruptor_da_entrada_l3
+          alvos_desatualizados: '{{ expand(entidades) | selectattr(''state'', ''!='',
+            alvo_estado) | map(attribute=''entity_id'') | list }}
+
+            '
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ alvos_desatualizados | length > 0 }}'
+          sequence:
+          - action: switch.turn_{{ alvo_estado }}
+            target:
+              entity_id: '{{ alvos_desatualizados }}'
+      - delay:
+          seconds: 2
+      until:
+      - condition: template
+        value_template: '{% set alvo_estado = trigger.to_state.state %} {% set entidades
+          = [''switch.interruptor_central_l2'', ''switch.interruptor_da_cozinha_l3'',
+          ''switch.interruptor_da_entrada_l3''] %} {{ expand(entidades) | selectattr(''state'',
+          ''!='', alvo_estado) | list | length == 0 or repeat.index >= 3 }}
+
+          '
+  mode: restart
+- id: '1790032161327'
+  alias: 'Luz do Quarto: Intermediário Virtual'
+  description: Sincroniza 3 interruptores com alvo inteligente e sem bloqueios.
+  triggers:
+  - entity_id:
+    - switch.interruptor_central_l3
+    - switch.interruptor_da_cozinha_l4
+    - switch.interruptor_da_entrada_l4
+    from: 'off'
+    to: 'on'
+    trigger: state
+  - entity_id:
+    - switch.interruptor_central_l3
+    - switch.interruptor_da_cozinha_l4
+    - switch.interruptor_da_entrada_l4
+    from: 'on'
+    to: 'off'
+    trigger: state
+  conditions:
+  - condition: template
+    value_template: '{% set s1 = states(''switch.interruptor_central_l3'') %} {% set
+      s2 = states(''switch.interruptor_da_cozinha_l4'') %} {% set s3 = states(''switch.interruptor_da_entrada_l4'')
+      %} {{ not (s1 == s2 == s3) }}
+
+      '
+  actions:
+  - repeat:
+      sequence:
+      - variables:
+          alvo_estado: '{{ trigger.to_state.state }}'
+          entidades:
+          - switch.interruptor_central_l3
+          - switch.interruptor_da_cozinha_l4
+          - switch.interruptor_da_entrada_l4
+          alvos_desatualizados: '{{ expand(entidades) | selectattr(''state'', ''!='',
+            alvo_estado) | map(attribute=''entity_id'') | list }}
+
+            '
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ alvos_desatualizados | length > 0 }}'
+          sequence:
+          - action: switch.turn_{{ alvo_estado }}
+            target:
+              entity_id: '{{ alvos_desatualizados }}'
+      - delay:
+          seconds: 2
+      until:
+      - condition: template
+        value_template: '{% set alvo_estado = trigger.to_state.state %} {% set entidades
+          = [''switch.interruptor_central_l3'', ''switch.interruptor_da_cozinha_l4'',
+          ''switch.interruptor_da_entrada_l4''] %} {{ expand(entidades) | selectattr(''state'',
+          ''!='', alvo_estado) | list | length == 0 or repeat.index >= 3 }}
+
+          '
+  mode: restart

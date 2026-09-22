@@ -1,0 +1,48 @@
+version: 5
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mosquitto:1883
+  user: '!secret.yaml mqtt_user'
+  password: '!secret.yaml mqtt_password'
+serial:
+  port: /dev/ttyACM0
+  adapter: zstack
+  baudrate: 115200
+  rtscts: false
+advanced:
+  log_level: info
+  channel: 11
+  network_key: '!secret.yaml network_key'
+  pan_id: 51623
+  ext_pan_id:
+    - 13
+    - 123
+    - 197
+    - 156
+    - 226
+    - 174
+    - 214
+    - 184
+  enable_external_js: false
+frontend:
+  enabled: true
+  host: 0.0.0.0
+  port: 8080
+homeassistant:
+  enabled: true
+devices:
+  '0xf044d3fffeb34f45':
+    friendly_name: Chuveiro
+  '0xa4c138158f41b738':
+    friendly_name: Interruptor do Banheiro
+  '0xa4c13819e6a88089':
+    friendly_name: Interruptor Central
+    debounce: 0
+    debounce_ignore: []
+  '0xa4c1388511a4260f':
+    friendly_name: Interruptor da Cozinha
+  '0xa4c138517d876986':
+    friendly_name: Interruptor da Entrada
+  '0xa4c138354c6b60bf':
+    friendly_name: Sensor de Umidade e Temperatura
+groups: {}

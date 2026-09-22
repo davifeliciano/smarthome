@@ -1,0 +1,48 @@
+# Variáveis de ambiente
+.env
+
+# ========================
+# Home Assistant
+# ========================
+# Ignorar arquivos temporários, logs e pacotes Python
+homeassistant_data/deps/
+homeassistant_data/tts/
+homeassistant_data/*.log
+homeassistant_data/*.log.*
+homeassistant_data/*.fault
+homeassistant_data/*.lock
+homeassistant_data/.cache/
+
+# Ignorar o banco de dados local (caso ainda exista o SQLite)
+homeassistant_data/*.db
+homeassistant_data/*.db-shm
+homeassistant_data/*.db-wal
+
+# Ignorar senhas e dados pessoais do HA
+homeassistant_data/secrets.yaml
+homeassistant_data/.storage/
+homeassistant_data/.cloud/
+
+# ========================
+# Mosquitto (Broker)
+# ========================
+mosquitto_data/data/
+mosquitto_data/log/
+mosquitto_data/config/pwfile
+
+# ========================
+# PostgreSQL (Banco de Dados)
+# ========================
+postgres_data/
+
+# ========================
+# Zigbee2MQTT
+# ========================
+# Ignorar logs e estado contínuo da rede
+zigbee2mqtt_data/log/
+zigbee2mqtt_data/state.json
+zigbee2mqtt_data/database.db
+zigbee2mqtt_data/secret.yaml
+
+# Ignorar backup do rádio Zigbee (contém a chave de segurança da rede)
+zigbee2mqtt_data/coordinator_backup.json

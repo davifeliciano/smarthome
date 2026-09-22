@@ -1,0 +1,55 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./homeassistant_data:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    depends_on:
+      - postgres
+      - mosquitto
+    environment:
+      - TZ=America/Sao_Paulo 
+
+  postgres:
+    container_name: postgres
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:latest
+    restart: unless-stopped
+    volumes:
+      - ./mosquitto_data/config:/mosquitto/config
+      - ./mosquitto_data/data:/mosquitto/data
+      - ./mosquitto_data/log:/mosquitto/log
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt:latest
+    restart: unless-stopped
+    volumes:
+      - ./zigbee2mqtt_data:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      - "8080:8080" # Interface web do Z2M
+    environment:
+      - TZ=America/Sao_Paulo
+    devices:
+      - /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_1009bf3ea528f111bc6c3eadfa551895-if00-port0:/dev/ttyACM0

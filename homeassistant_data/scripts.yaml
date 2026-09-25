@@ -1,0 +1,35 @@
+desligar_todas_as_luzes:
+  sequence:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      device_id: d34d1b7385b2cd2015cf6ab3d6417976
+    data: {}
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.interruptor_da_entrada_l1
+    data: {}
+  alias: Desligar Todas as Luzes
+  description: Desliga toda a iluminação do apartamento
+  icon: mdi:lightbulb-off
+ligar_luzes_principais:
+  sequence:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.interruptor_central_l1
+    data: {}
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.interruptor_central_l2
+    data: {}
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.interruptor_central_l3
+    data: {}
+  alias: Ligar Luzes Principais
+  description: Liga a iluminação principal do apartamento.
+  icon: mdi:lightbulb

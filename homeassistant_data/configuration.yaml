@@ -13,3 +13,12 @@ scene: !include scenes.yaml
 recorder:
   db_url: !secret postgres_url
   purge_keep_days: 365
+
+google_assistant:
+  project_id: conquest-smarthome
+  service_account: !include SERVICE_KEY.json
+  report_state: true
+  exposed_domains:
+    - switch
+    - light
+    - script

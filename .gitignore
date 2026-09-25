@@ -22,6 +22,8 @@ homeassistant_data/*.db-wal
 homeassistant_data/secrets.yaml
 homeassistant_data/.storage/
 homeassistant_data/.cloud/
+homeassistant_data/SERVICE_KEY.json
+homeassistant_data/backups/
 
 # ========================
 # Mosquitto (Broker)

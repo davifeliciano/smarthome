@@ -22,3 +22,6 @@ google_assistant:
     - switch
     - light
     - script
+
+alexa:
+  smart_home:

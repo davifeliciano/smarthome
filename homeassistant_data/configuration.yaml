@@ -18,10 +18,30 @@ google_assistant:
   project_id: conquest-smarthome
   service_account: !include SERVICE_KEY.json
   report_state: true
-  exposed_domains:
-    - switch
-    - light
-    - script
+  expose_by_default: false
+  entity_config:
+    switch.chuveiro: &expose
+      expose: true
+    switch.interruptor_do_banheiro_l1: *expose
+    switch.interruptor_do_banheiro_l2: *expose
+    switch.interruptor_do_banheiro_l3: *expose
+    switch.interruptor_da_cozinha_l1: *expose
+    switch.interruptor_central_l1: *expose
+    switch.interruptor_central_l2: *expose
+    switch.interruptor_central_l3: *expose
+    switch.interruptor_da_entrada_l1: *expose
 
 alexa:
   smart_home:
+    filter:
+      include_entities:
+        - switch.chuveiro
+        - switch.interruptor_do_banheiro_l1
+        - switch.interruptor_do_banheiro_l2
+        - switch.interruptor_do_banheiro_l3
+        - switch.interruptor_da_cozinha_l1
+        - switch.interruptor_central_l1
+        - switch.interruptor_central_l2
+        - switch.interruptor_central_l3
+        - switch.interruptor_da_entrada_l1
+        

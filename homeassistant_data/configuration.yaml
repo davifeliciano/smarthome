@@ -30,6 +30,9 @@ google_assistant:
     switch.interruptor_central_l2: *expose
     switch.interruptor_central_l3: *expose
     switch.interruptor_da_entrada_l1: *expose
+    script.desligar_todas_as_luzes: *expose
+    script.ligar_luzes_principais: *expose
+    
 
 alexa:
   smart_home:
@@ -44,4 +47,6 @@ alexa:
         - switch.interruptor_central_l2
         - switch.interruptor_central_l3
         - switch.interruptor_da_entrada_l1
+        - script.desligar_todas_as_luzes
+        - script.ligar_luzes_principais
         

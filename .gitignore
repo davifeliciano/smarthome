@@ -12,6 +12,10 @@ homeassistant_data/*.log.*
 homeassistant_data/*.fault
 homeassistant_data/*.lock
 homeassistant_data/.cache/
+homeassistant_data/custom_components/
+homeassistant_data/custom_icons/
+homeassistant_data/themes/
+homeassistant_data/www/
 
 # Ignorar o banco de dados local (caso ainda exista o SQLite)
 homeassistant_data/*.db

@@ -33,3 +33,33 @@ ligar_luzes_principais:
   alias: Ligar Luzes Principais
   description: Liga a iluminação principal do apartamento.
   icon: mdi:lightbulb
+ativar_modo_de_som_musica:
+  alias: Ativar Modo de Som Música
+  description: Ativa modo de som música na Soundbar JBL
+  icon: mdi:music
+  mode: single
+  sequence:
+  - action: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Emissor IR/set
+      payload: '{"ir_code_to_send": "CVgjghE+AnUGPgKAAQFnAkALQANAAUAHQAPAAcALBHUGZwI+4AIBA3UGPgJAAUAHAXUGQBsFZwJ1Bj4C4AMB4AMPwAtABwt1Bj4CoqBYI7MIPgI="}'
+ativar_modo_de_som_cinema:
+  sequence:
+  - action: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Emissor IR/set
+      payload: '{"ir_code_to_send": "CVojnRE/AnsGPwLAAUALQANAAUAHQAPAAcALwAfgAwFAE+ADA0ABQA9AAcAH4AMBwBMLewY/AqCgWiO0CD8C"}'
+  alias: Ativar Modo de Som Cinema
+  description: Ativa modo de som cinema na Soundbar JBL
+  icon: mdi:movie
+  mode: single
+ativar_modo_de_som_tv:
+  sequence:
+  - action: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Emissor IR/set
+      payload: '{"ir_code_to_send": "CW8jjRFAAnoGQALAAUALQANAAUAHQAPAAcALwAfgAwFAE8ADQAFAC8AB4AMLQAHAD0AHC3oGQAKYoG8jowhAAg=="}'
+  alias: Ativar Modo de Som TV
+  description: Ativa modo de som TV na Soundbar JBL
+  icon: mdi:television
+  mode: single

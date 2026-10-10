@@ -45,4 +45,6 @@ devices:
     friendly_name: Interruptor da Entrada
   '0xa4c138354c6b60bf':
     friendly_name: Sensor de Umidade e Temperatura
+  '0x70d07efffedde6e0':
+    friendly_name: Emissor IR
 groups: {}

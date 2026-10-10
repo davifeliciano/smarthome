@@ -12,7 +12,10 @@ homeassistant_data/*.log.*
 homeassistant_data/*.fault
 homeassistant_data/*.lock
 homeassistant_data/.cache/
-homeassistant_data/custom_components/
+homeassistant_data/custom_components/*
+!homeassistant_data/custom_components/smartir/
+homeassistant_data/custom_components/smartir/*
+!homeassistant_data/custom_components/smartir/codes/
 homeassistant_data/custom_icons/
 homeassistant_data/themes/
 homeassistant_data/www/

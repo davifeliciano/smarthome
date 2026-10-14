@@ -398,3 +398,20 @@
 
           '
   mode: restart
+- id: '1791679735153'
+  alias: Desligar Ar Condicionado de Manhã
+  description: Desliga automaticamente o ar condicionado todos os dias pela manhã.
+  triggers:
+  - trigger: sun.sunrise
+    options:
+      offset:
+        days: 0
+        hours: 0
+        minutes: 0
+        seconds: 0
+      offset_type: before
+  actions:
+  - action: climate.turn_off
+    target:
+      entity_id: climate.ar_condicionado
+  mode: single

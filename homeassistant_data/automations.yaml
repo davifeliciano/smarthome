@@ -415,3 +415,98 @@
     target:
       entity_id: climate.ar_condicionado
   mode: single
+- id: '1792107601488'
+  alias: Controle Remoto, Botão 1, Toque Simples (Toggle Cozinha)
+  description: Alterna a luz da cozinha com um toque simples no botão 1 do controle
+    remoto.
+  triggers:
+  - topic: zigbee2mqtt/Controle Remoto/action
+    payload: 1_single
+    trigger: mqtt
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.interruptor_central_l1
+  mode: single
+- id: '1792107736285'
+  alias: ' Controle Remoto, Botão 1, Toque Duplo (Toggle Bancada)'
+  description: Alterna a luz da bancada com um toque duplo no botão 1 do controle
+    remoto.
+  triggers:
+  - topic: zigbee2mqtt/Controle Remoto/action
+    payload: 1_double
+    trigger: mqtt
+  conditions: []
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.interruptor_da_cozinha_l1
+  mode: single
+- id: '1792108051678'
+  alias: Controle Remoto, Botão 2, Toque Simples (Toggle Sala)
+  description: Alterna a luz da sala com um toque simples no botão 2 do controle remoto.
+  triggers:
+  - topic: zigbee2mqtt/Controle Remoto/action
+    payload: 2_single
+    trigger: mqtt
+  conditions: []
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.interruptor_central_l2
+  mode: single
+- id: '1792108120700'
+  alias: Controle Remoto, Botão 2, Toque Duplo (Toggle Entrada)
+  description: Alterna a luz da entrada com um toque duplo no botão 2 do controle
+    remoto.
+  triggers:
+  - topic: zigbee2mqtt/Controle Remoto/action
+    payload: 2_double
+    trigger: mqtt
+  conditions: []
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.interruptor_da_entrada_l1
+  mode: single
+- id: '1792108276956'
+  alias: Controle Remoto, Botão 3, Toque Simples (Toggle Quarto)
+  description: Alterna a luz do quarto com um toque simples no botão 3 do controle
+    remoto.
+  triggers:
+  - topic: zigbee2mqtt/Controle Remoto/action
+    payload: 3_single
+    trigger: mqtt
+  conditions: []
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.interruptor_central_l3
+  mode: single
+- id: '1792108365329'
+  alias: Controle Remoto, Botão 4, Toque Simples (Toggle Banheiro)
+  description: Alterna a luz do banheiro com um toque simples no botão 4 do controle
+    remoto.
+  triggers:
+  - topic: zigbee2mqtt/Controle Remoto/action
+    payload: 4_single
+    trigger: mqtt
+  conditions: []
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.interruptor_do_banheiro_l1
+  mode: single
+- id: '1792108467630'
+  alias: Controle Remoto, Botão 4, Toque Duplo (Toggle Exaustor)
+  description: Alterna o exaustor com um toque duplo no botão 4 do controle remoto.
+  triggers:
+  - topic: zigbee2mqtt/Controle Remoto/action
+    payload: 4_double
+    trigger: mqtt
+  conditions: []
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.interruptor_do_banheiro_l2
+  mode: single

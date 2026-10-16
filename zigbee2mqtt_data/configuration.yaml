@@ -47,4 +47,8 @@ devices:
     friendly_name: Sensor de Umidade e Temperatura
   '0x70d07efffedde6e0':
     friendly_name: Emissor IR
+  '0xa4c138ef3e711cb3':
+    friendly_name: Sensor de Presença
+  '0xb43a31fffed898a2':
+    friendly_name: Controle Remoto
 groups: {}

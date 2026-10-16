@@ -41,6 +41,7 @@ google_assistant:
     switch.interruptor_da_entrada_l1: *expose
     script.desligar_todas_as_luzes: *expose
     script.ligar_luzes_principais: *expose
+    climate.ar_condicionado: *expose
     
 alexa:
   smart_home:
@@ -57,4 +58,5 @@ alexa:
         - switch.interruptor_da_entrada_l1
         - script.desligar_todas_as_luzes
         - script.ligar_luzes_principais
+        - climate.ar_condicionado
         

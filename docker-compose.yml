@@ -1,7 +1,7 @@
 services:
   homeassistant:
     container_name: homeassistant
-    image: ghcr.io/home-assistant/home-assistant:stable
+    image: ghcr.io/home-assistant/home-assistant@sha256:d8922685169707fd91e8b9729902d975f06157d005e422874d201e0261dda196
     volumes:
       - ./homeassistant_data:/config
       - /etc/localtime:/etc/localtime:ro
@@ -17,7 +17,7 @@ services:
 
   postgres:
     container_name: postgres
-    image: postgres:15-alpine
+    image: postgres@sha256:a46e076249ce434e41203b8c1dadfaa025b9726331d72390df038385d6dc29cd
     restart: unless-stopped
     environment:
       - POSTGRES_USER=${DB_USER}
@@ -30,7 +30,7 @@ services:
 
   mosquitto:
     container_name: mosquitto
-    image: eclipse-mosquitto:latest
+    image: eclipse-mosquitto@sha256:38c0da4f2ef84284d47b3b3eeea1cb3bdeabe81ee10caf0cd5c5ff61ee3ea408
     restart: unless-stopped
     volumes:
       - ./mosquitto_data/config:/mosquitto/config
@@ -42,7 +42,7 @@ services:
 
   zigbee2mqtt:
     container_name: zigbee2mqtt
-    image: koenkk/zigbee2mqtt:latest
+    image: koenkk/zigbee2mqtt@sha256:fef0de769dcd04c27b3a6d277b61046eb96284bdd4198dcb1687c3a01b3020f3
     restart: unless-stopped
     volumes:
       - ./zigbee2mqtt_data:/app/data

@@ -63,3 +63,13 @@ ativar_modo_de_som_tv:
   description: Ativa modo de som TV na Soundbar JBL
   icon: mdi:television
   mode: single
+ligar_soundbar:
+  sequence:
+  - action: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Emissor IR/set
+      payload: '{"ir_code_to_send": "CXYjbBFBAnYGQQLAAUALQANAAUAHQAMEQQJhAkEgAYALAUECwAfAAcAPQAdAA0ABQAdAA8AB4BMLB7ugdiO2CEEC"}'
+  alias: Ligar Soundbar
+  description: Liga ou Desliga Soundbar JBL
+  icon: mdi:toggle-switch
+  mode: single

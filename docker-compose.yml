@@ -1,7 +1,7 @@
 services:
   homeassistant:
     container_name: homeassistant
-    image: ghcr.io/home-assistant/home-assistant:2026.10.1
+    image: ghcr.io/home-assistant/home-assistant:2026.11.1
     volumes:
       - ./homeassistant_data:/config
       - /etc/localtime:/etc/localtime:ro
@@ -42,7 +42,7 @@ services:
 
   zigbee2mqtt:
     container_name: zigbee2mqtt
-    image: koenkk/zigbee2mqtt:2.14.2
+    image: koenkk/zigbee2mqtt:2.14.3
     restart: unless-stopped
     volumes:
       - ./zigbee2mqtt_data:/app/data

@@ -409,7 +409,7 @@
         hours: 0
         minutes: 0
         seconds: 0
-      offset_type: before
+      offset_type: after
   actions:
   - action: climate.turn_off
     target:
@@ -509,4 +509,28 @@
   - action: switch.toggle
     target:
       entity_id: switch.interruptor_do_banheiro_l2
+  mode: single
+- id: '1794429703930'
+  alias: Notificar Bambu Seco
+  description: Envia uma notificação para todos os aplicativos móveis orientando a
+    rega do bambu.
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.0xa4c138da1ea4afba_dry
+    from:
+    - 'off'
+    to:
+    - 'on'
+  conditions: []
+  actions:
+  - action: notify.send_message
+    metadata: {}
+    target:
+      device_id:
+      - 66e070e89a4c4c3d2f5f429b8e40df28
+      - e8332e7a98777dd1ba6ffc3742b0bb55
+    data:
+      message: Regue o bambu para evitar o solo muito seco
+      title: Bambu Seco
   mode: single

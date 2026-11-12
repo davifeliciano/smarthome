@@ -51,4 +51,6 @@ devices:
     friendly_name: Sensor de Presença
   '0xb43a31fffed898a2':
     friendly_name: Controle Remoto
+  '0xa4c138da1ea4afba':
+    friendly_name: Sensor de Umidade do Solo (Bambu)
 groups: {}

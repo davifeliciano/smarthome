@@ -534,3 +534,41 @@
       message: Regue o bambu para evitar o solo muito seco
       title: Bambu Seco
   mode: single
+- id: '1794685350183'
+  alias: Notificar Zonas
+  description: ''
+  use_blueprint:
+    path: panhans/zone_notification_extended.yaml
+    input:
+      persons:
+      - person.davi_feliciano
+      zones:
+      - zone.home
+      - zone.banco_do_brasil_sede_iii
+      - zone.jose_martins_solucoes_imobiliarias
+      - zone.sucupira
+      - zone.villa_lucci
+      title_arriving: '{{ person }} chegou'
+      message_arriving: '{{ person }} chegou em {{ zone }}.'
+      title_leaving: '{{ person }} saiu'
+      message_leaving: '{{ person }} saiu de {{ zone }}.'
+      notify_device: e8332e7a98777dd1ba6ffc3742b0bb55
+- id: '1794685824029'
+  alias: Notificar Localização de Isabela
+  description: ''
+  use_blueprint:
+    path: panhans/zone_notification_extended.yaml
+    input:
+      persons:
+      - person.isabela_nogueira
+      zones:
+      - zone.home
+      - zone.banco_do_brasil_sede_iii
+      - zone.jose_martins_solucoes_imobiliarias
+      - zone.sucupira
+      - zone.villa_lucci
+      title_arriving: '{{ person }} chegou'
+      message_arriving: '{{ person }} chegou em {{ zone }}.'
+      title_leaving: '{{ person }} saiu'
+      message_leaving: '{{ person }} saiu de {{ zone }}.'
+      notify_device: 66e070e89a4c4c3d2f5f429b8e40df28

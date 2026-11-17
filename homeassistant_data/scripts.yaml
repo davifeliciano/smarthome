@@ -73,3 +73,55 @@ ligar_soundbar:
   description: Liga ou Desliga Soundbar JBL
   icon: mdi:toggle-switch
   mode: single
+mutar_tv_da_sala:
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.sala_de_estar_tv
+    data:
+      command: MUTE
+  description: Ativa ou Desativa Mudo da TV
+  icon: mdi:volume-mute
+  mode: single
+  alias: Mutar TV da Sala
+pausa_tv:
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.sala_de_estar_tv
+    data:
+      command: MEDIA_PLAY_PAUSE
+  description: Pausa ou continua conteúdo reproduzindo na TV
+  icon: mdi:play-pause
+  mode: single
+  alias: Pausa TV
+diminui_volume_da_tv:
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.sala_de_estar_tv
+    data:
+      command: VOLUME_DOWN
+  description: Diminui o volume da TV
+  icon: mdi:play-pause
+  mode: single
+  alias: Diminui Volume da TV
+aumenta_volume_da_tv:
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.sala_de_estar_tv
+    data:
+      command: VOLUME_UP
+  description: Aumenta o volume da TV
+  icon: mdi:volume-plus
+  mode: single
+  alias: Aumenta Volume da TV
+ligar_ou_desligar_tv:
+  sequence:
+  - action: remote.toggle
+    target:
+      entity_id: remote.sala_de_estar_tv
+  alias: Ligar ou Desligar TV
+  description: Liga ou Desliga a TV
+  icon: mdi:power

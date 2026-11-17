@@ -572,3 +572,15 @@
       title_leaving: '{{ person }} saiu'
       message_leaving: '{{ person }} saiu de {{ zone }}.'
       notify_device: 66e070e89a4c4c3d2f5f429b8e40df28
+- id: '1794868200076'
+  alias: Atualizar System Monitor
+  description: Atualiza os sensores do sistema a cada 10 segundos
+  triggers:
+  - trigger: time_pattern
+    seconds: /10
+  actions:
+  - action: homeassistant.update_entity
+    target:
+      entity_id:
+      - sensor.system_monitor_temperatura_do_processador
+  mode: single
